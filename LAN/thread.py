@@ -25,6 +25,13 @@ def client(ip, port, message):
             print "Received: {}".format(response)
         finally:
             sock.close()
+            
+def another_request(ip, port, mask):
+    ip='127.0.0.1'
+    port=6556
+    for i in range( 0, mask):
+        s= lambda x: x*x
+        
 
 if __name__ == "__main__":
     # Port 0 means to select an arbitrary unused port
