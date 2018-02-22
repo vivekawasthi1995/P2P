@@ -1,6 +1,8 @@
 import socket
 import threading
 import SocketServer
+import sys
+import time
 
 class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
 
@@ -11,6 +13,7 @@ class ThreadedTCPRequestHandler(SocketServer.BaseRequestHandler):
         self.request.sendall(response)
 
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
+    '''thread request haNDLING'''
     pass
 
 def client(ip, port, message):
@@ -37,10 +40,10 @@ if __name__ == "__main__":
     server_thread.daemon = True
     server_thread.start()
     print "Server loop running in thread:", server_thread.name
-
+   
     client(ip, port, "Hello World 1")
     client(ip, port, "Hello World 2")
     client(ip, port, "Hello World 3")
-
+    client(ip, port, "Hello World 1")
     server.shutdown()
     server.server_close()
